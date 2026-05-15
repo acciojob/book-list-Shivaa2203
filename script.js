@@ -1,1 +1,36 @@
 //your JS code here. If required.
+document.getElementById("submit").addEventListener("click", function () {
+    let title = document.getElementById("title").value;
+    let author = document.getElementById("author").value;
+    let isbn = document.getElementById("isbn").value;
+
+    if (title === "" || author === "" || isbn === "") {
+        alert("Please fill all fields");
+        return;
+    }
+
+    let table = document.getElementById("book-list");
+
+    let row = document.createElement("tr");
+
+    row.innerHTML = `
+        <td>${title}</td>
+        <td>${author}</td>
+        <td>${isbn}</td>
+        <td><button class="delete">X</button></td>
+    `;
+
+    table.appendChild(row);
+
+    // clear inputs
+    document.getElementById("title").value = "";
+    document.getElementById("author").value = "";
+    document.getElementById("isbn").value = "";
+});
+
+// delete row functionality
+document.addEventListener("click", function (e) {
+    if (e.target.classList.contains("delete")) {
+        e.target.parentElement.parentElement.remove();
+    }
+});
